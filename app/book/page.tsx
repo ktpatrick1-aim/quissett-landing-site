@@ -53,7 +53,7 @@ export default function BookPage() {
                   {[
                     ["Bedrooms", "4"],
                     ["Max guests", "12"],
-                    ["Bathrooms", "2.5"],
+                    ["Bathrooms", "2"],
                     ["Check-in", "4:00 PM"],
                     ["Check-out", "10:00 AM"],
                   ].map(([label, val]) => (

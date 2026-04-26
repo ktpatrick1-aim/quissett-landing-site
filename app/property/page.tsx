@@ -115,7 +115,7 @@ export default function PropertyPage() {
                 {[
                   ["Bedrooms", "4 (1 King, 2 Queens, 1 Bunk room)"],
                   ["Guests", "Up to 12"],
-                  ["Bathrooms", "2.5"],
+                  ["Bathrooms", "2"],
                   ["Floors", "3"],
                   ["Parking", "4 cars, off-street"],
                   ["Check-in", "4:00 PM"],

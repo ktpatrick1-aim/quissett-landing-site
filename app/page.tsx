@@ -109,7 +109,7 @@ export default function Home() {
               {[
                 ["4", "Bedrooms"],
                 ["12", "Guests"],
-                ["2.5", "Baths"],
+                ["2", "Baths"],
                 ["½ mi", "To Quissett Harbor"],
               ].map(([val, label], i) => (
                 <div key={label} className="py-5 px-4 md:px-6 text-center" style={i > 0 ? { borderLeft: "1px solid rgba(244,239,230,0.1)" } : {}}>
