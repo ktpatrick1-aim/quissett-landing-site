@@ -33,6 +33,38 @@ export default function BookPage() {
         </div>
       </section>
 
+      {/* ── FEE SAVINGS BANNER ──────────────────────────────────────────── */}
+      <section style={{ backgroundColor: "#1A1A18" }}>
+        <div className="container-wide py-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3"
+            style={{ borderTop: "1px solid rgba(244,239,230,0.08)" }}
+          >
+            {[
+              { platform: "Airbnb", fee: "14–16%", note: "guest service fee on every booking" },
+              { platform: "VRBO", fee: "6–12%", note: "traveler service fee on every booking" },
+              { platform: "Book Direct", fee: "0%", note: "no platform fee, ever", highlight: true },
+            ].map(({ platform, fee, note, highlight }) => (
+              <div key={platform} className="flex items-center gap-4 px-4 py-4 sm:px-6">
+                <div
+                  className="text-2xl font-display shrink-0 w-16 text-right"
+                  style={{ color: highlight ? "#4A7C8E" : "rgba(244,239,230,0.25)" }}
+                >
+                  {fee}
+                </div>
+                <div>
+                  <p className="font-sans text-xs font-medium" style={{ color: highlight ? "#F4EFE6" : "rgba(244,239,230,0.35)" }}>
+                    {platform}
+                  </p>
+                  <p className="font-sans text-[11px]" style={{ color: highlight ? "rgba(244,239,230,0.55)" : "rgba(244,239,230,0.2)" }}>
+                    {note}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOOKING WIDGET ──────────────────────────────────────────────── */}
       <section className="section-padding" style={{ backgroundColor: "#F4EFE6" }}>
         <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -71,11 +103,11 @@ export default function BookPage() {
                 </p>
                 <ul className="space-y-3">
                   {[
-                    "No Airbnb or VRBO service fees",
+                    "Save 14–16% vs. Airbnb — keep the service fee",
+                    "Save 6–12% vs. VRBO — same property, lower price",
                     "Direct contact with the host",
                     "Same secure payment processing",
                     "Instant confirmation",
-                    "Flexible communication",
                   ].map((item) => (
                     <li key={item} className="flex gap-3 items-start">
                       <span className="mt-1.5 w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: "#4A7C8E" }} />

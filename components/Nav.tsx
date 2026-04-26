@@ -70,7 +70,7 @@ export default function Nav() {
                 : "bg-harbor text-cream hover:bg-tide"
             }`}
           >
-            Book Now
+            Book Direct
           </Link>
         </nav>
 
@@ -102,7 +102,7 @@ export default function Nav() {
             href="/book"
             className="mt-2 bg-harbor text-cream font-sans text-sm tracking-wide px-5 py-3 rounded-full text-center"
           >
-            Book Now
+            Book Direct
           </Link>
         </div>
       )}
