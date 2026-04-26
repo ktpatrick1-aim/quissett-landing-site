@@ -1,59 +1,110 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 interface Props {
-  propertyId: string;
-  widgetAccountId?: string;
+  // Paste the full embed code HTML from OwnerRez → Websites → Widgets → Book Now → Embed Code
+  embedCode?: string;
+  propertyId?: string;
 }
 
-export default function BookingWidget({ propertyId, widgetAccountId }: Props) {
-  const accountId = widgetAccountId ?? process.env.NEXT_PUBLIC_OWNERREZ_WIDGET_ID;
+export default function BookingWidget({ embedCode, propertyId }: Props) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!accountId) return;
+    if (!embedCode || !containerRef.current) return;
 
-    // Load the OwnerRez widget script once
-    if (document.getElementById("ownerrez-widget-script")) return;
-    const script = document.createElement("script");
-    script.id = "ownerrez-widget-script";
-    script.src = "https://secure.ownerreservations.com/js/widgets/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, [accountId]);
+    const container = containerRef.current;
 
-  if (!accountId) {
+    // Parse the embed code: extract <script> tags and the widget <div>
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(embedCode, "text/html");
+
+    // Inject non-script HTML (widget div) directly
+    const nonScriptHTML = Array.from(doc.body.childNodes)
+      .filter((n) => (n as Element).tagName !== "SCRIPT")
+      .map((n) => (n as Element).outerHTML || "")
+      .join("");
+    container.innerHTML = nonScriptHTML;
+
+    // Load each <script> properly so the browser executes it
+    const scripts = Array.from(doc.querySelectorAll("script"));
+    scripts.forEach((s) => {
+      const script = document.createElement("script");
+      if (s.src) {
+        script.src = s.src;
+        script.async = true;
+      } else {
+        script.textContent = s.textContent;
+      }
+      // Copy any data attributes
+      Array.from(s.attributes).forEach((attr) => {
+        if (attr.name !== "src") script.setAttribute(attr.name, attr.value);
+      });
+      document.body.appendChild(script);
+    });
+
+    return () => {
+      // Clean up injected scripts on unmount
+      scripts.forEach((s) => {
+        if (s.src) {
+          document.querySelectorAll(`script[src="${s.src}"]`).forEach((el) => el.remove());
+        }
+      });
+    };
+  }, [embedCode]);
+
+  // ── Placeholder shown until embed code is added ────────────────────────
+  if (!embedCode) {
     return (
       <div
-        className="rounded-sm p-10 text-center"
-        style={{ backgroundColor: "#E8E0D2", border: "1px dashed rgba(124,107,82,0.3)" }}
+        className="rounded-sm p-10"
+        style={{
+          backgroundColor: "#E8E0D2",
+          border: "1px dashed rgba(124,107,82,0.3)",
+        }}
       >
-        <p className="font-display mb-2" style={{ fontSize: "1.25rem", color: "#1D3A47" }}>
-          Booking Widget
+        <p
+          className="font-display mb-3"
+          style={{ fontSize: "1.25rem", color: "#1D3A47" }}
+        >
+          Booking widget
         </p>
-        <p className="font-sans text-sm mb-1" style={{ color: "rgba(124,107,82,0.7)" }}>
-          Add your OwnerRez Widget Account ID to enable live availability and booking.
+        <p
+          className="font-sans text-sm leading-relaxed mb-4"
+          style={{ color: "rgba(124,107,82,0.7)" }}
+        >
+          To activate live booking:
         </p>
-        <p className="font-sans text-xs" style={{ color: "rgba(124,107,82,0.4)" }}>
-          Set <code className="bg-driftwood px-1">NEXT_PUBLIC_OWNERREZ_WIDGET_ID</code> in your environment variables.
-        </p>
-        <p className="font-sans text-xs mt-2" style={{ color: "rgba(124,107,82,0.35)" }}>
-          Property ID: {propertyId}
-        </p>
+        <ol
+          className="font-sans text-sm space-y-2 list-decimal list-inside"
+          style={{ color: "rgba(124,107,82,0.65)" }}
+        >
+          <li>Log into OwnerRez → Websites → Widgets</li>
+          <li>Add Widget → Book Now → select this property</li>
+          <li>Scroll to "Embed Code" at the bottom and copy it</li>
+          <li>
+            Paste it as the <code className="text-xs px-1" style={{ backgroundColor: "rgba(124,107,82,0.12)" }}>embedCode</code> prop in{" "}
+            <code className="text-xs px-1" style={{ backgroundColor: "rgba(124,107,82,0.12)" }}>app/book/page.tsx</code>
+          </li>
+        </ol>
+        {propertyId && (
+          <p
+            className="font-sans text-xs mt-5"
+            style={{ color: "rgba(124,107,82,0.35)" }}
+          >
+            Property ID: {propertyId}
+          </p>
+        )}
       </div>
     );
   }
 
   return (
-    <div className="orwidget">
-      {/* OwnerRez booking widget — styled via CSS in globals.css */}
-      <div
-        className="orwidget-booking"
-        data-propertyid={propertyId}
-        data-accountid={accountId}
-        data-widgettype="booking"
-        style={{ minHeight: "500px" }}
-      />
-    </div>
+    <div
+      ref={containerRef}
+      className="orwidget-container"
+      style={{ minHeight: "400px" }}
+    />
   );
 }
