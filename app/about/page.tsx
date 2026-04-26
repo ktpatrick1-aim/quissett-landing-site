@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     "The history of The Quissett Landing — a Woods Hole home that has sheltered Cape Cod summers for over a century.",
 };
 
-const HERO = "https://thequissettlanding.com/_assets/media/c4bf1db69652b7548e7fff1fbbae7a63.jpg";
-const OUTDOOR = "https://thequissettlanding.com/_assets/media/d6f24877a321b646ed8c04841a9a6c41.jpg";
+const HERO = "/images/hero.jpg";
+const OUTDOOR = "/images/outdoor.jpg";
 
 export default function AboutPage() {
   return (

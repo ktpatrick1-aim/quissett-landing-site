@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Reach out to The Quissett Landing with questions about the property, availability, or anything else.",
 };
 
-const HERO = "https://thequissettlanding.com/_assets/media/c4bf1db69652b7548e7fff1fbbae7a63.jpg";
+const HERO = "/images/hero.jpg";
 
 export default function ContactPage() {
   return (

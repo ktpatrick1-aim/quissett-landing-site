@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "A hand-curated guide to Woods Hole, Quissett Harbor, Falmouth, and the best of Cape Cod — from the people who know it best.",
 };
 
-const HERO = "https://thequissettlanding.com/_assets/media/c4bf1db69652b7548e7fff1fbbae7a63.jpg";
+const HERO = "/images/hero.jpg";
 
 const sections = [
   {

@@ -3,14 +3,14 @@ import Link from "next/link";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 
 const IMAGES = {
-  hero:    "https://thequissettlanding.com/_assets/media/c4bf1db69652b7548e7fff1fbbae7a63.jpg",
-  interior:"https://thequissettlanding.com/_assets/media/d20b883311389c616a325fd9acd188c4.jpg",
-  bedroom1:"https://thequissettlanding.com/_assets/media/192f18ac6509d4c8104acce841d295f8.jpg",
-  bedroom2:"https://thequissettlanding.com/_assets/media/b92d4d7e86781c9198311f53e21a0019.jpg",
-  bedroom3:"https://thequissettlanding.com/_assets/media/9352a6abd9fc304f24647bf5d2965b0c.jpg",
-  bunkroom:"https://thequissettlanding.com/_assets/media/ba9e32c416898d83572bc9812f93c260.jpg",
-  outdoor: "https://thequissettlanding.com/_assets/media/d6f24877a321b646ed8c04841a9a6c41.jpg",
-  deck:    "https://thequissettlanding.com/_assets/media/a411d1d942bd983ed10563609e6c03d4.jpg",
+  hero:    "/images/hero.jpg",
+  interior:"/images/interior.jpg",
+  bedroom1:"/images/bedroom1.jpg",
+  bedroom2:"/images/bedroom2.jpg",
+  bedroom3:"/images/bedroom3.jpg",
+  bunkroom:"/images/bunkroom.jpg",
+  outdoor: "/images/outdoor.jpg",
+  deck:    "/images/deck.jpg",
 };
 
 const testimonials = [

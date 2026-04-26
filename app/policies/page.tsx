@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "House rules, cancellation policy, and check-in/out details for The Quissett Landing.",
 };
 
-const HERO = "https://thequissettlanding.com/_assets/media/c4bf1db69652b7548e7fff1fbbae7a63.jpg";
+const HERO = "/images/hero.jpg";
 
 const policies = [
   {

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Check availability and book The Quissett Landing direct — no platform fees, instant confirmation, secure payment.",
 };
 
-const HERO = "https://thequissettlanding.com/_assets/media/c4bf1db69652b7548e7fff1fbbae7a63.jpg";
+const HERO = "/images/hero.jpg";
 
 export default function BookPage() {
   return (

@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description: "A historic home on the shores of Quissett Harbor. Twelve guests, four bedrooms, and a bunk room made for memories.",
     images: [
       {
-        url: "https://thequissettlanding.com/_assets/media/c4bf1db69652b7548e7fff1fbbae7a63.jpg",
+        url: "/images/hero.jpg",
         width: 1200,
         height: 630,
         alt: "The Quissett Landing exterior",
