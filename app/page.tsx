@@ -1,65 +1,352 @@
 import Image from "next/image";
+import Link from "next/link";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
+
+const IMAGES = {
+  hero:    "https://thequissettlanding.com/_assets/media/c4bf1db69652b7548e7fff1fbbae7a63.jpg",
+  interior:"https://thequissettlanding.com/_assets/media/d20b883311389c616a325fd9acd188c4.jpg",
+  bedroom1:"https://thequissettlanding.com/_assets/media/192f18ac6509d4c8104acce841d295f8.jpg",
+  bedroom2:"https://thequissettlanding.com/_assets/media/b92d4d7e86781c9198311f53e21a0019.jpg",
+  bedroom3:"https://thequissettlanding.com/_assets/media/9352a6abd9fc304f24647bf5d2965b0c.jpg",
+  bunkroom:"https://thequissettlanding.com/_assets/media/ba9e32c416898d83572bc9812f93c260.jpg",
+  outdoor: "https://thequissettlanding.com/_assets/media/d6f24877a321b646ed8c04841a9a6c41.jpg",
+  deck:    "https://thequissettlanding.com/_assets/media/a411d1d942bd983ed10563609e6c03d4.jpg",
+};
+
+const testimonials = [
+  {
+    quote:
+      "This house is absolutely amazing from top to bottom — we felt completely at home. The original wood floors are just incredible. You can tell that a lot of thought went into the property and the comfort of the guests. My only complaint is that we didn't book a long enough stay.",
+    author: "Kimberly G.",
+  },
+  {
+    quote:
+      "Had a great stay with extended family. The house was perfect for both adults and kids with plenty of space for all. We will be back — especially for those with kids, the third floor bunk room was a highlight.",
+    author: "Mike",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      {/* ── HERO: full dark, giant type ────────────────────────────────── */}
+      <section className="relative min-h-[100svh] bg-harbor overflow-hidden flex flex-col">
+
+        {/* Photo — right half, bleeds to edge */}
+        <div className="absolute inset-y-0 right-0 w-full md:w-[58%]">
+          <Image
+            src={IMAGES.hero}
+            alt="The Quissett Landing, Falmouth MA"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="(max-width: 768px) 100vw, 58vw"
+          />
+          {/* Left fade so type is readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-harbor via-harbor/70 to-transparent" />
+          {/* Bottom vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-harbor/60 to-transparent" />
+        </div>
+
+        {/* Content layer */}
+        <div className="relative flex flex-col justify-end min-h-[100svh] pb-14 md:pb-20">
+          <div className="container-wide">
+            {/* Eyebrow */}
+            <p
+              className="font-sans text-[10px] tracking-[0.35em] uppercase mb-6 md:mb-8"
+              style={{ color: "rgba(244,239,230,0.45)" }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Woods Hole · Falmouth · Cape Cod
+            </p>
+
+            {/* Giant display title */}
+            <h1
+              className="font-display text-cream leading-[0.88] tracking-tight mb-8 md:mb-10"
+              style={{ fontSize: "clamp(4rem, 12vw, 9rem)" }}
             >
-              Learning
-            </a>{" "}
-            center.
+              The<br />
+              Quissett<br />
+              Landing
+            </h1>
+
+            {/* Horizontal rule + tagline in one line */}
+            <div className="flex items-start gap-6 max-w-lg">
+              <div className="w-8 h-px bg-tide mt-[0.6em] shrink-0" />
+              <p className="font-sans text-sm md:text-base leading-relaxed" style={{ color: "rgba(244,239,230,0.65)" }}>
+                Where the harbor bell rings at dusk and the morning ferry
+                slips past before breakfast. A house that earns its keep
+                in memories.
+              </p>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3 mt-10 md:mt-12">
+              <Link
+                href="/book"
+                className="font-sans text-sm tracking-wide px-7 py-3.5 rounded-full transition-colors hover:opacity-85"
+                style={{ backgroundColor: "#4A7C8E", color: "#F4EFE6" }}
+              >
+                Check Availability
+              </Link>
+              <Link
+                href="/property"
+                className="font-sans text-sm tracking-wide px-7 py-3.5 rounded-full border transition-colors"
+                style={{ borderColor: "rgba(244,239,230,0.3)", color: "rgba(244,239,230,0.75)" }}
+              >
+                Tour the House
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating stat strip at the very bottom */}
+        <div
+          className="relative border-t"
+          style={{ borderColor: "rgba(244,239,230,0.1)" }}
+        >
+          <div className="container-wide">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x" style={{ divideColor: "rgba(244,239,230,0.1)" }}>
+              {[
+                ["4", "Bedrooms"],
+                ["12", "Guests"],
+                ["2.5", "Baths"],
+                ["½ mi", "To Quissett Harbor"],
+              ].map(([val, label]) => (
+                <div key={label} className="py-5 px-4 md:px-6 text-center">
+                  <p className="font-display text-cream text-2xl md:text-3xl">{val}</p>
+                  <p className="font-sans text-[10px] tracking-widest uppercase mt-0.5" style={{ color: "rgba(244,239,230,0.35)" }}>
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STORY: cream, oversized pull quote ─────────────────────────── */}
+      <section className="section-padding" style={{ backgroundColor: "#F4EFE6" }}>
+        <div className="container-wide">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-6 items-start">
+
+            {/* Left col: label + body */}
+            <div className="md:col-span-4 md:pt-3">
+              <p className="font-sans text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "#7C6B52" }}>
+                The House
+              </p>
+              <div className="font-sans text-sm leading-relaxed space-y-4 max-w-prose" style={{ color: "rgba(124,107,82,0.8)" }}>
+                <p>
+                  Tucked along Woods Hole Road a half-mile from the harbor,
+                  The Quissett Landing is the kind of house people argue
+                  about on the drive home — who gets which room next year,
+                  which morning on the deck was better, whether the walk
+                  to the Knob beat the ferry to the Vineyard.
+                </p>
+                <p>
+                  Four bedrooms. A bunk room that sleeps ten on its own.
+                  A kitchen made for actually cooking. Original wide-plank
+                  floors that have survived a century of Cape Cod summers.
+                </p>
+              </div>
+              <Link
+                href="/property"
+                className="inline-flex items-center gap-2 mt-8 font-sans text-xs tracking-widest uppercase"
+                style={{ color: "#1D3A47" }}
+              >
+                Explore the property
+                <span style={{ borderBottom: "1px solid #1D3A47", paddingBottom: "1px" }}>→</span>
+              </Link>
+            </div>
+
+            {/* Right col: big pull quote + photo */}
+            <div className="md:col-span-8 md:pl-12">
+              <blockquote
+                className="font-display italic leading-tight mb-10"
+                style={{
+                  fontSize: "clamp(2rem, 4.5vw, 3.75rem)",
+                  color: "#1D3A47",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                "Some houses hold you.<br />This one keeps you."
+              </blockquote>
+              <div className="relative aspect-[16/9] overflow-hidden" style={{ borderRadius: "2px" }}>
+                <Image
+                  src={IMAGES.outdoor}
+                  alt="Outdoor dining at The Quissett Landing"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 66vw"
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── GALLERY: editorial strip ────────────────────────────────────── */}
+      <section style={{ backgroundColor: "#1D3A47" }}>
+        <div className="container-wide py-4 md:py-6">
+          <div className="flex items-center justify-between mb-4">
+            <p className="font-sans text-[10px] tracking-[0.3em] uppercase" style={{ color: "rgba(244,239,230,0.4)" }}>
+              Inside
+            </p>
+            <Link
+              href="/property"
+              className="font-sans text-[10px] tracking-[0.2em] uppercase"
+              style={{ color: "rgba(244,239,230,0.4)" }}
+            >
+              Full gallery →
+            </Link>
+          </div>
+        </div>
+
+        {/* Edge-to-edge horizontal strip — no container padding */}
+        <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-none px-4 md:px-10">
+          {[
+            { src: IMAGES.deck, label: "The deck", aspect: "aspect-[3/4]" },
+            { src: IMAGES.bedroom2, label: "King bedroom", aspect: "aspect-[4/3]" },
+            { src: IMAGES.bunkroom, label: "Bunk room", aspect: "aspect-[3/4]" },
+            { src: IMAGES.bedroom1, label: "Queen bedroom", aspect: "aspect-[4/3]" },
+            { src: IMAGES.interior, label: "Living area", aspect: "aspect-[3/4]" },
+          ].map(({ src, label, aspect }) => (
+            <div key={label} className={`relative shrink-0 ${aspect} w-56 md:w-72 overflow-hidden`} style={{ borderRadius: "2px" }}>
+              <Image
+                src={src}
+                alt={label}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+                sizes="300px"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-harbor/70 to-transparent">
+                <p className="font-sans text-[10px] tracking-widest uppercase" style={{ color: "rgba(244,239,230,0.6)" }}>
+                  {label}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="pb-6 md:pb-8" />
+      </section>
+
+      {/* ── LOCATION: split panel ───────────────────────────────────────── */}
+      <section className="grid grid-cols-1 md:grid-cols-2" style={{ minHeight: "560px" }}>
+        {/* Photo panel */}
+        <div className="relative min-h-[380px] md:min-h-0">
+          <Image
+            src={IMAGES.bedroom3}
+            alt="View from The Quissett Landing"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+
+        {/* Text panel — dark */}
+        <div
+          className="flex flex-col justify-center px-8 md:px-16 py-16"
+          style={{ backgroundColor: "#1A1A18", color: "#F4EFE6" }}
+        >
+          <p className="font-sans text-[10px] tracking-[0.3em] uppercase mb-8" style={{ color: "rgba(244,239,230,0.35)" }}>
+            The Location
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <h2
+            className="font-display leading-tight mb-8"
+            style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", letterSpacing: "-0.01em" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Everything Cape Cod.
+            <br />
+            Nothing overdone.
+          </h2>
+
+          <div className="space-y-3 mb-10">
+            {[
+              ["½ mi", "Quissett Harbor"],
+              ["0.8 mi", "Nobska Lighthouse"],
+              ["1.2 mi", "Woods Hole Village + WHOI"],
+              ["3 mi", "Falmouth Main Street"],
+              ["3.5 mi", "Martha's Vineyard Ferry"],
+            ].map(([dist, place]) => (
+              <div key={place} className="flex gap-4 items-baseline border-b pb-3" style={{ borderColor: "rgba(244,239,230,0.08)" }}>
+                <span className="font-sans text-xs w-14 shrink-0" style={{ color: "#4A7C8E" }}>{dist}</span>
+                <span className="font-sans text-sm" style={{ color: "rgba(244,239,230,0.7)" }}>{place}</span>
+              </div>
+            ))}
+          </div>
+
+          <Link
+            href="/area"
+            className="font-sans text-xs tracking-widest uppercase self-start"
+            style={{ color: "rgba(244,239,230,0.5)", borderBottom: "1px solid rgba(244,239,230,0.2)", paddingBottom: "2px" }}
           >
-            Documentation
-          </a>
+            Area guide →
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ── TESTIMONIALS ────────────────────────────────────────────────── */}
+      <section className="section-padding" style={{ backgroundColor: "#F4EFE6" }}>
+        <div className="container-wide">
+          <p className="font-sans text-[10px] tracking-[0.3em] uppercase mb-12" style={{ color: "rgba(124,107,82,0.5)" }}>
+            Guest Reviews
+          </p>
+          <TestimonialCarousel testimonials={testimonials} dark={false} />
+        </div>
+      </section>
+
+      {/* ── BOOKING CTA: full-bleed dark ────────────────────────────────── */}
+      <section className="relative overflow-hidden" style={{ backgroundColor: "#1D3A47" }}>
+        {/* Subtle background photo */}
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src={IMAGES.hero}
+            alt=""
+            fill
+            className="object-cover object-top"
+            sizes="100vw"
+            aria-hidden
+          />
+        </div>
+
+        <div className="relative container-wide py-24 md:py-36">
+          <div className="max-w-xl">
+            <p className="font-sans text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "rgba(244,239,230,0.35)" }}>
+              Book Direct
+            </p>
+            <h2
+              className="font-display text-cream leading-tight mb-6"
+              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", letterSpacing: "-0.02em" }}
+            >
+              Skip the platforms.
+              <br />
+              Book the house.
+            </h2>
+            <p className="font-sans text-sm leading-relaxed mb-10" style={{ color: "rgba(244,239,230,0.6)" }}>
+              No service fees. No middleman. Direct access to the host,
+              instant confirmation, and the same secure payment you'd
+              expect anywhere.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/book"
+                className="font-sans text-sm tracking-wide px-8 py-4 rounded-full"
+                style={{ backgroundColor: "#F4EFE6", color: "#1D3A47" }}
+              >
+                Check Availability
+              </Link>
+              <Link
+                href="/contact"
+                className="font-sans text-sm tracking-wide px-8 py-4 rounded-full border"
+                style={{ borderColor: "rgba(244,239,230,0.25)", color: "rgba(244,239,230,0.65)" }}
+              >
+                Ask a question
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
