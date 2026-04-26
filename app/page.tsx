@@ -105,14 +105,14 @@ export default function Home() {
           style={{ borderColor: "rgba(244,239,230,0.1)" }}
         >
           <div className="container-wide">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x" style={{ divideColor: "rgba(244,239,230,0.1)" }}>
+            <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderTop: "none" }}>
               {[
                 ["4", "Bedrooms"],
                 ["12", "Guests"],
                 ["2.5", "Baths"],
                 ["½ mi", "To Quissett Harbor"],
-              ].map(([val, label]) => (
-                <div key={label} className="py-5 px-4 md:px-6 text-center">
+              ].map(([val, label], i) => (
+                <div key={label} className="py-5 px-4 md:px-6 text-center" style={i > 0 ? { borderLeft: "1px solid rgba(244,239,230,0.1)" } : {}}>
                   <p className="font-display text-cream text-2xl md:text-3xl">{val}</p>
                   <p className="font-sans text-[10px] tracking-widest uppercase mt-0.5" style={{ color: "rgba(244,239,230,0.35)" }}>
                     {label}
