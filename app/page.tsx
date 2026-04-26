@@ -296,6 +296,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── BOOK DIRECT INCENTIVE ───────────────────────────────────────── */}
+      <section style={{ backgroundColor: "#E8E0D2" }}>
+        <div className="container-wide py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-1 h-8 rounded-full shrink-0" style={{ backgroundColor: "#4A7C8E" }} />
+            <p className="font-sans text-sm" style={{ color: "#1D3A47" }}>
+              <span className="font-medium">Book direct and save the platform fee.</span>
+              {" "}Airbnb and VRBO add 14–16% in guest service fees.
+              Booking here costs nothing extra — same secure payment, direct host access.
+            </p>
+          </div>
+          <Link
+            href="/book"
+            className="font-sans text-xs tracking-widest uppercase shrink-0 px-5 py-2.5 rounded-full"
+            style={{ backgroundColor: "#1D3A47", color: "#F4EFE6" }}
+          >
+            Book Direct →
+          </Link>
+        </div>
+      </section>
+
       {/* ── BOOKING CTA: full-bleed dark ────────────────────────────────── */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#1D3A47" }}>
         {/* Subtle background photo */}

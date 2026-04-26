@@ -3,6 +3,8 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import StickyBookingBar from "@/components/StickyBookingBar";
+import StructuredData from "@/components/StructuredData";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -56,9 +58,11 @@ export default function RootLayout({
         className="min-h-full flex flex-col antialiased"
         style={{ backgroundColor: "#F4EFE6", color: "#1A1A18" }}
       >
+        <StructuredData />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <StickyBookingBar />
       </body>
     </html>
   );
