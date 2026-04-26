@@ -39,7 +39,7 @@ export default function BookPage() {
 
           {/* Widget area */}
           <div className="lg:col-span-8">
-            <BookingWidget propertyId="481968" />
+            <BookingWidget />
           </div>
 
           {/* Sidebar */}
